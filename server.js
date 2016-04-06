@@ -14,9 +14,10 @@ mongoose.connect('mongodb://localhost:27017/easynav');
 var app = express();
 
 // Use the body-parser package in our application
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+// parse application/json
+app.use(bodyParser.json())
 
 // Use the passport package in our application
 app.use(passport.initialize());
@@ -26,8 +27,8 @@ var router = express.Router();
 
 // Create endpoint handlers for /pois
 router.route('/pois')
-  .post(authController.isAuthenticated, poiController.postPoi)
-  .get(authController.isAuthenticated, poiController.getPoi);
+  .post(authController.isAuthenticated, poiController.postPois)
+  .get(authController.isAuthenticated, poiController.getPois);
 
 // Create endpoint handlers for /pois/:poi_id
 router.route('/pois/:poi_id')

@@ -2,7 +2,7 @@
 var Poi = require('../models/poi');
 
 // Create endpoint /api/pois for POST
-exports.postPoi = function(req, res) {
+exports.postPois = function(req, res) {
   // Create a new instance of the Poi model
   var poi = new Poi();
 
@@ -28,11 +28,10 @@ exports.postPoi = function(req, res) {
 
 // Create endpoint /api/pois for GET
 exports.getPois = function(req, res) {
-  // Use the Poi model to find all pois
+  // Use the Poi model to find all pois 
   Poi.find({ userId: req.user._id }, function(err, pois) {
     if (err)
       res.send(err);
-
     res.json(pois);
   });
 };
